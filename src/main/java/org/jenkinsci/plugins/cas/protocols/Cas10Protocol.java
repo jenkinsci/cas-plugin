@@ -17,6 +17,7 @@ import org.kohsuke.stapler.QueryParameter;
 import hudson.Extension;
 import hudson.Util;
 import hudson.model.Descriptor;
+import hudson.model.Descriptor.FormException;
 import hudson.util.FormValidation;
 import jenkins.model.Jenkins;
 
@@ -35,12 +36,12 @@ public class Cas10Protocol extends CasProtocol {
 	private final SecureGroovyScript secureRolesValidationScript;
 
 	@Deprecated
-	public Cas10Protocol(String rolesValidationScript, String testValidationResponse) {
+	public Cas10Protocol(String rolesValidationScript, String testValidationResponse) throws FormException {
 		this(rolesValidationScript, testValidationResponse, false);
 	}
 
 	@DataBoundConstructor
-	public Cas10Protocol(String rolesValidationScript, String testValidationResponse, boolean sandbox) {
+	public Cas10Protocol(String rolesValidationScript, String testValidationResponse, boolean sandbox) throws FormException {
 		super(Cas10RoleParsingTicketValidator.DEFAULT_ROLE_ATTRIBUTE);
 		this.rolesValidationScript = Util.fixEmptyAndTrim(rolesValidationScript);
 		this.testValidationResponse = Util.fixEmpty(testValidationResponse);
@@ -55,7 +56,7 @@ public class Cas10Protocol extends CasProtocol {
 		return ticketValidator;
 	}
 
-	private static SecureGroovyScript getSecureGroovyScript(String script, boolean sandbox) {
+	private static SecureGroovyScript getSecureGroovyScript(String script, boolean sandbox) throws FormException {
 		if (script == null) {
 			return null;
 		} else {
