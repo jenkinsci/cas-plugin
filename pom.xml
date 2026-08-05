@@ -96,7 +96,7 @@ THE SOFTWARE.
 		<ban-commons-lang-2.skip>false</ban-commons-lang-2.skip>
 		<hpi.bundledArtifacts>cas-client-core,cas-client-support-saml,nimbus-jose-jwt,spring-security-cas</hpi.bundledArtifacts>
 		<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>
-		<cas-client.version>4.0.4</cas-client.version>
+		<cas-client.version>4.1.1</cas-client.version>
 	</properties>
 
 	<dependencyManagement>
