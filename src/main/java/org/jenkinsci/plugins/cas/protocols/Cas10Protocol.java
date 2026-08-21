@@ -2,8 +2,8 @@ package org.jenkinsci.plugins.cas.protocols;
 
 import java.util.Collection;
 
-import org.codehaus.groovy.control.CompilationFailedException;
 import org.apereo.cas.client.validation.TicketValidator;
+import org.codehaus.groovy.control.CompilationFailedException;
 import org.jenkinsci.plugins.cas.CasProtocol;
 import org.jenkinsci.plugins.cas.Messages;
 import org.jenkinsci.plugins.cas.validation.Cas10RoleParsingTicketValidator;
@@ -13,6 +13,7 @@ import org.jenkinsci.plugins.scriptsecurity.scripts.UnapprovedClasspathException
 import org.jenkinsci.plugins.scriptsecurity.scripts.UnapprovedUsageException;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
+import org.kohsuke.stapler.interceptor.RequirePOST;
 
 import hudson.Extension;
 import hudson.Util;
@@ -71,6 +72,7 @@ public class Cas10Protocol extends CasProtocol {
 			return "CAS 1.0";
 		}
 
+		@RequirePOST
 		@SuppressWarnings("rawtypes")
 		public FormValidation doTestScript(
 				@QueryParameter("rolesValidationScript") final String rolesValidationScript,
