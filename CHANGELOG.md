@@ -2,6 +2,18 @@
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-08-22
+
+### 🐛 Bug fixes
+
+* Fix potential CSRF in CAS 1.0 form validation ([#62](https://github.com/jenkinsci/cas-plugin/pull/62)) [@fcrespel](https://github.com/fcrespel)
+
+### 👻 Maintenance
+
+* Migrate from Commons Lang 2 to Commons Lang 3 ([#55](https://github.com/jenkinsci/cas-plugin/pull/55)) [@timja](https://github.com/timja), [@fcrespel](https://github.com/fcrespel)
+* Fix compilation with recent script-security plugin versions ([#31](https://github.com/jenkinsci/cas-plugin/pull/31)) [@fcrespel](https://github.com/fcrespel)
+* Update plugin parent POM to latest ([#18](https://github.com/jenkinsci/cas-plugin/pull/18)) [@basil](https://github.com/basil), [@fcrespel](https://github.com/fcrespel)
+
 ## [1.7.0] - 2024-09-27
 
 - Upgrade to Spring Security 6.x and Jakarta EE 9 (thanks to [@basil](https://github.com/basil)).
@@ -87,7 +99,8 @@
 - Single Sign-Out support
 - Jenkins API Token support (no conflict)
 
-[Unreleased]: https://github.com/jenkinsci/cas-plugin/compare/cas-plugin-1.7.0...HEAD
+[Unreleased]: https://github.com/jenkinsci/cas-plugin/compare/cas-plugin-1.8.0...HEAD
+[1.8.0]: https://github.com/jenkinsci/cas-plugin/compare/cas-plugin-1.7.0...cas-plugin-1.8.0
 [1.7.0]: https://github.com/jenkinsci/cas-plugin/compare/cas-plugin-1.6.3...cas-plugin-1.7.0
 [1.6.3]: https://github.com/jenkinsci/cas-plugin/compare/cas-plugin-1.6.2...cas-plugin-1.6.3
 [1.6.2]: https://github.com/jenkinsci/cas-plugin/compare/cas-plugin-1.6.1...cas-plugin-1.6.2

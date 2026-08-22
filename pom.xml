@@ -87,7 +87,7 @@ THE SOFTWARE.
 	</pluginRepositories>
 
 	<properties>
-		<revision>1.7.1</revision>
+		<revision>1.8.0</revision>
 		<changelist>-SNAPSHOT</changelist>
 		<gitHubRepo>jenkinsci/${project.artifactId}</gitHubRepo>
 		<!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
