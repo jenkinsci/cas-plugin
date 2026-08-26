@@ -27,6 +27,7 @@ import jenkins.model.Jenkins;
 public abstract class CasProtocol extends AbstractDescribableImpl<CasProtocol> implements ExtensionPoint {
 
 	public final String authoritiesAttribute;
+	public final String authoritiesAttributeSeparator;
 	public final String fullNameAttribute;
 	public final String emailAttribute;
 	public final String customValidationParams;
@@ -49,7 +50,13 @@ public abstract class CasProtocol extends AbstractDescribableImpl<CasProtocol> i
 
 	protected CasProtocol(String authoritiesAttribute, String fullNameAttribute, String emailAttribute,
 			String customValidationParams) {
+		this(authoritiesAttribute, fullNameAttribute, emailAttribute, customValidationParams, null);
+	}
+
+	protected CasProtocol(String authoritiesAttribute, String fullNameAttribute, String emailAttribute,
+			String customValidationParams, String authoritiesAttributeSeparator) {
 		this.authoritiesAttribute = Util.fixEmptyAndTrim(authoritiesAttribute);
+		this.authoritiesAttributeSeparator = Util.fixEmptyAndTrim(authoritiesAttributeSeparator);
 		this.fullNameAttribute = Util.fixEmptyAndTrim(fullNameAttribute);
 		this.emailAttribute = Util.fixEmptyAndTrim(emailAttribute);
 		this.customValidationParams = Util.fixEmptyAndTrim(customValidationParams);
@@ -70,6 +77,13 @@ public abstract class CasProtocol extends AbstractDescribableImpl<CasProtocol> i
 	 */
 	public String getAuthoritiesAttribute() {
 		return authoritiesAttribute;
+	}
+
+	/**
+	 * @return the separator used to split a single returned authority value, or null
+	 */
+	public String getAuthoritiesAttributeSeparator() {
+		return authoritiesAttributeSeparator;
 	}
 
 	/**

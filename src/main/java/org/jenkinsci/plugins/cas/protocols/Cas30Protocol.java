@@ -37,12 +37,16 @@ public class Cas30Protocol extends CasProtocol {
 
 	@Deprecated
 	public Cas30Protocol(String authoritiesAttribute, String fullNameAttribute, String emailAttribute, Boolean proxyEnabled, Boolean proxyAllowAny, String proxyAllowList, Boolean jsonEnabled) {
-		this(authoritiesAttribute, fullNameAttribute, emailAttribute, null, proxyEnabled, proxyAllowAny, proxyAllowList, jsonEnabled);
+		this(authoritiesAttribute, fullNameAttribute, emailAttribute, null, proxyEnabled, proxyAllowAny, proxyAllowList, jsonEnabled, null);
+	}
+
+	public Cas30Protocol(String authoritiesAttribute, String fullNameAttribute, String emailAttribute, String customValidationParams, Boolean proxyEnabled, Boolean proxyAllowAny, String proxyAllowList, Boolean jsonEnabled) {
+		this(authoritiesAttribute, fullNameAttribute, emailAttribute, customValidationParams, proxyEnabled, proxyAllowAny, proxyAllowList, jsonEnabled, null);
 	}
 
 	@DataBoundConstructor
-	public Cas30Protocol(String authoritiesAttribute, String fullNameAttribute, String emailAttribute, String customValidationParams, Boolean proxyEnabled, Boolean proxyAllowAny, String proxyAllowList, Boolean jsonEnabled) {
-		super(authoritiesAttribute, fullNameAttribute, emailAttribute, customValidationParams);
+	public Cas30Protocol(String authoritiesAttribute, String fullNameAttribute, String emailAttribute, String customValidationParams, Boolean proxyEnabled, Boolean proxyAllowAny, String proxyAllowList, Boolean jsonEnabled, String authoritiesAttributeSeparator) {
+		super(authoritiesAttribute, fullNameAttribute, emailAttribute, customValidationParams, authoritiesAttributeSeparator);
 		this.proxyEnabled = proxyEnabled;
 		this.proxyAllowAny = proxyAllowAny;
 		this.proxyAllowList = proxyAllowList;
