@@ -78,7 +78,7 @@ public class CasConfigurationContext {
 	public CasUserDetailsService casUserDetailsService(CasProtocol casProtocol) {
 		CasUserDetailsService casUserDetailsService = new CasUserDetailsService();
 		casUserDetailsService.setAttributes(casProtocol.getAuthoritiesAttributes());
-		casUserDetailsService.setAuthoritySeparator(casProtocol.getAuthoritiesAttributeSeparator());
+		casUserDetailsService.setAuthoritySeparator(casProtocol.getAuthoritiesValueSeparator());
 		casUserDetailsService.setConvertToUpperCase(false);
 		casUserDetailsService.setDefaultAuthorities(Collections.singletonList(SecurityRealm.AUTHENTICATED_AUTHORITY2.getAuthority()));
 		return casUserDetailsService;

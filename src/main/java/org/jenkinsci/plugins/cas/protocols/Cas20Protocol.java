@@ -35,13 +35,14 @@ public class Cas20Protocol extends CasProtocol {
 		this(authoritiesAttribute, fullNameAttribute, emailAttribute, null, proxyEnabled, proxyAllowAny, proxyAllowList, null);
 	}
 
+	@Deprecated
 	public Cas20Protocol(String authoritiesAttribute, String fullNameAttribute, String emailAttribute, String customValidationParams, Boolean proxyEnabled, Boolean proxyAllowAny, String proxyAllowList) {
 		this(authoritiesAttribute, fullNameAttribute, emailAttribute, customValidationParams, proxyEnabled, proxyAllowAny, proxyAllowList, null);
 	}
 
 	@DataBoundConstructor
-	public Cas20Protocol(String authoritiesAttribute, String fullNameAttribute, String emailAttribute, String customValidationParams, Boolean proxyEnabled, Boolean proxyAllowAny, String proxyAllowList, String authoritiesAttributeSeparator) {
-		super(authoritiesAttribute, fullNameAttribute, emailAttribute, customValidationParams, authoritiesAttributeSeparator);
+	public Cas20Protocol(String authoritiesAttribute, String fullNameAttribute, String emailAttribute, String customValidationParams, Boolean proxyEnabled, Boolean proxyAllowAny, String proxyAllowList, String authoritiesValueSeparator) {
+		super(authoritiesAttribute, fullNameAttribute, emailAttribute, customValidationParams, authoritiesValueSeparator);
 		this.proxyEnabled = proxyEnabled;
 		this.proxyAllowAny = proxyAllowAny;
 		this.proxyAllowList = proxyAllowList;

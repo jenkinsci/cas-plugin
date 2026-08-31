@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -17,21 +18,35 @@ import org.springframework.security.core.userdetails.UserDetails;
 class CasUserDetailsServiceTest {
 
 	@Test
-	void keepsSingleValueTogetherWhenNoSeparatorIsConfigured() {
+	void keepsSingleAuthorityValueWhenNoSeparatorIsConfigured() {
 		UserDetails user = loadUser("groups", "jenkins-core-developer,jenkins-fleet-developer", null);
 
 		assertEquals(Collections.singletonList("jenkins-core-developer,jenkins-fleet-developer"), authorities(user));
 	}
 
 	@Test
-	void splitsSingleValueUsingConfiguredLiteralSeparator() {
+	void keepsSingleAuthorityValueWhenEmptySeparatorIsConfigured() {
+		UserDetails user = loadUser("groups", "jenkins-core-developer,jenkins-fleet-developer", "");
+
+		assertEquals(Collections.singletonList("jenkins-core-developer,jenkins-fleet-developer"), authorities(user));
+	}
+
+	@Test
+	void splitsSingleAuthorityValueWhenLiteralSeparatorIsConfigured() {
 		UserDetails user = loadUser("groups", "jenkins-core-developer,jenkins-fleet-developer", ",");
 
 		assertEquals(Arrays.asList("jenkins-core-developer", "jenkins-fleet-developer"), authorities(user));
 	}
 
 	@Test
-	void splitsEachValueWhenCasReturnsAList() {
+	void splitsSingleAuthorityValueWhenSpaceSeparatorIsConfigured() {
+		UserDetails user = loadUser("groups", "jenkins-core-developer jenkins-fleet-developer", " ");
+
+		assertEquals(Arrays.asList("jenkins-core-developer", "jenkins-fleet-developer"), authorities(user));
+	}
+
+	@Test
+	void splitsMultipleAuthorityValuesWhenLiteralSeparatorIsConfigured() {
 		UserDetails user = loadUser("groups", Arrays.asList("core|developer", "fleet|developer"), "|");
 
 		assertEquals(Arrays.asList("core", "developer", "fleet"), authorities(user));
@@ -50,7 +65,7 @@ class CasUserDetailsServiceTest {
 		return service.loadUserDetails(assertion);
 	}
 
-	private static java.util.List<String> authorities(UserDetails user) {
+	private static List<String> authorities(UserDetails user) {
 		return user.getAuthorities().stream().map(authority -> authority.getAuthority())
 				.filter(authority -> !"authenticated".equals(authority)).collect(Collectors.toList());
 	}

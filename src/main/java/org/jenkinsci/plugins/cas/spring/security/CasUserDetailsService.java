@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 
+import hudson.Util;
+
 /**
  * Populates the {@link org.springframework.security.core.GrantedAuthority}s for a user by reading a list of attributes that were returned as
  * part of the CAS response. Each attribute is read and each value of the attribute is turned into a GrantedAuthority. If the attribute has no
@@ -96,7 +98,7 @@ public final class CasUserDetailsService extends AbstractCasAssertionUserDetails
 	 * @param authoritySeparator separator, or null to disable splitting
 	 */
 	public void setAuthoritySeparator(final String authoritySeparator) {
-		this.authoritySeparator = StringUtils.hasText(authoritySeparator) ? authoritySeparator : null;
+		this.authoritySeparator = Util.fixEmpty(authoritySeparator);
 	}
 
 	/**
