@@ -24,9 +24,14 @@ public class Saml11Protocol extends CasProtocol {
 		this(authoritiesAttribute, fullNameAttribute, emailAttribute, null, tolerance);
 	}
 
-	@DataBoundConstructor
+	@Deprecated
 	public Saml11Protocol(String authoritiesAttribute, String fullNameAttribute, String emailAttribute, String customValidationParams, int tolerance) {
-		super(authoritiesAttribute, fullNameAttribute, emailAttribute, customValidationParams);
+		this(authoritiesAttribute, fullNameAttribute, emailAttribute, customValidationParams, tolerance, null);
+	}
+
+	@DataBoundConstructor
+	public Saml11Protocol(String authoritiesAttribute, String fullNameAttribute, String emailAttribute, String customValidationParams, int tolerance, String authoritiesValueSeparator) {
+		super(authoritiesAttribute, fullNameAttribute, emailAttribute, customValidationParams, authoritiesValueSeparator);
 		this.tolerance = tolerance;
 	}
 

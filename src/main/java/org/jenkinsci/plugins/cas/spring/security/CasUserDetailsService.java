@@ -3,6 +3,7 @@ package org.jenkinsci.plugins.cas.spring.security;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.apereo.cas.client.validation.Assertion;
 import org.springframework.security.cas.userdetails.AbstractCasAssertionUserDetailsService;
@@ -11,6 +12,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
+
+import hudson.Util;
 
 /**
  * Populates the {@link org.springframework.security.core.GrantedAuthority}s for a user by reading a list of attributes that were returned as
@@ -29,6 +32,8 @@ public final class CasUserDetailsService extends AbstractCasAssertionUserDetails
 
 	private boolean convertToUpperCase = true;
 
+	private String authoritySeparator;
+
 	@Override
 	@SuppressWarnings("rawtypes")
 	protected UserDetails loadUserDetails(final Assertion assertion) {
@@ -45,17 +50,11 @@ public final class CasUserDetailsService extends AbstractCasAssertionUserDetails
 				final List list = (List) value;
 
 				for (final Object o : list) {
-					String authority = o.toString();
-					if (StringUtils.hasText(authority)) {
-						grantedAuthorities.add(new SimpleGrantedAuthority(this.convertToUpperCase ? authority.toUpperCase() : authority));
-					}
+					addAuthorities(grantedAuthorities, o.toString());
 				}
 
 			} else {
-				String authority = value.toString();
-				if (StringUtils.hasText(authority)) {
-					grantedAuthorities.add(new SimpleGrantedAuthority(this.convertToUpperCase ? authority.toUpperCase() : authority));
-				}
+				addAuthorities(grantedAuthorities, value.toString());
 			}
 		}
 
@@ -64,6 +63,16 @@ public final class CasUserDetailsService extends AbstractCasAssertionUserDetails
 		}
 
 		return new User(assertion.getPrincipal().getName(), NON_EXISTENT_PASSWORD_VALUE, true, true, true, true, grantedAuthorities);
+	}
+
+	private void addAuthorities(final List<GrantedAuthority> grantedAuthorities, final String value) {
+		String[] authorities = this.authoritySeparator == null ? new String[] { value }
+				: value.split(Pattern.quote(this.authoritySeparator));
+		for (String authority : authorities) {
+			if (StringUtils.hasText(authority)) {
+				grantedAuthorities.add(new SimpleGrantedAuthority(this.convertToUpperCase ? authority.toUpperCase() : authority));
+			}
+		}
 	}
 
 	/**
@@ -81,6 +90,15 @@ public final class CasUserDetailsService extends AbstractCasAssertionUserDetails
 	public void setAttributes(List<String> attributes) {
 		this.attributes.clear();
 		this.attributes.addAll(attributes);
+	}
+
+	/**
+	 * Sets the literal separator used to split each returned authority value.
+	 * A null or empty separator preserves the CAS value unchanged.
+	 * @param authoritySeparator separator, or null to disable splitting
+	 */
+	public void setAuthoritySeparator(final String authoritySeparator) {
+		this.authoritySeparator = Util.fixEmpty(authoritySeparator);
 	}
 
 	/**

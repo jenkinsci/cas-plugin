@@ -9,6 +9,9 @@
     <f:entry title="${%authoritiesAttribute}" field="authoritiesAttribute">
       <f:textbox default="groups,roles" />
     </f:entry>
+    <f:entry title="${%authoritiesValueSeparator}" field="authoritiesValueSeparator">
+      <f:textbox default="" />
+    </f:entry>
     <f:entry title="${%fullNameAttribute}" field="fullNameAttribute">
       <f:textbox default="cn" />
     </f:entry>

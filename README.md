@@ -55,6 +55,8 @@ Several protocols implemented by CAS are available in the **CAS Protocol** dropd
 
 [Attributes](https://apereo.github.io/cas/development/integration/Attribute-Release.html) are an easy (and recommended) way to add full name and email address information to an authenticated user, as well as roles/groups membership. CAS 1.0 response parsing with a custom Groovy script is made available as a legacy option for backward compatibility with the [CAS1 Plugin](https://wiki.jenkins.io/display/JENKINS/CAS1+Plugin).
 
+If the CAS server returns multiple roles as one delimited attribute value, configure **Roles Value Separator** for the selected protocol.
+
 
 ## Usage
 
