@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [1.9.0] - 2026-09-02
+
+## 🚀 New features and improvements
+
+* Add configurable CAS authority value separator ([#64](https://github.com/jenkinsci/cas-plugin/pull/64)) [@DingKaiCode](https://github.com/DingKaiCode)
+
 ## [1.8.0] - 2026-08-22
 
 ### 🐛 Bug fixes
@@ -99,7 +105,8 @@
 - Single Sign-Out support
 - Jenkins API Token support (no conflict)
 
-[Unreleased]: https://github.com/jenkinsci/cas-plugin/compare/cas-plugin-1.8.0...HEAD
+[Unreleased]: https://github.com/jenkinsci/cas-plugin/compare/cas-plugin-1.9.0...HEAD
+[1.9.0]: https://github.com/jenkinsci/cas-plugin/compare/cas-plugin-1.8.0...cas-plugin-1.9.0
 [1.8.0]: https://github.com/jenkinsci/cas-plugin/compare/cas-plugin-1.7.0...cas-plugin-1.8.0
 [1.7.0]: https://github.com/jenkinsci/cas-plugin/compare/cas-plugin-1.6.3...cas-plugin-1.7.0
 [1.6.3]: https://github.com/jenkinsci/cas-plugin/compare/cas-plugin-1.6.2...cas-plugin-1.6.3
