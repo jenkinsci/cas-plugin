@@ -94,6 +94,7 @@ THE SOFTWARE.
 		<jenkins.baseline>2.479</jenkins.baseline>
 		<jenkins.version>${jenkins.baseline}.3</jenkins.version>
 		<ban-commons-lang-2.skip>false</ban-commons-lang-2.skip>
+		<ban-junit4-imports.skip>false</ban-junit4-imports.skip>
 		<hpi.bundledArtifacts>cas-client-core,cas-client-support-saml,nimbus-jose-jwt,spring-security-cas</hpi.bundledArtifacts>
 		<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>
 		<cas-client.version>4.0.4</cas-client.version>
